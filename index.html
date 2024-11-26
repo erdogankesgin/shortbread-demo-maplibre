@@ -18,17 +18,17 @@
       with <a href="https://maplibre.org/">MapLibre map rendering</a>.
     </p>
     <div id="map" style="width: 80vw; height: 80vh"></div>
+    <div id="zoom-level">Zoom Level: 0</div>
     <script>
       var map = new maplibregl.Map({
         container: "map",
-        attributionControl: {
-          compact: false,
-          customAttribution:
-            '<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap</a>',
-        },
         style: "./map_style.json", // stylesheet location
         center: [0, 0], // starting position [lng, lat]
         zoom: 0, // starting zoom
+      });
+
+      map.on('zoom', function() {
+        document.getElementById('zoom-level').innerText = 'Zoom Level: ' + map.getZoom().toFixed(2);
       });
     </script>
   </body>
